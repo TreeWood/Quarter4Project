@@ -6,9 +6,9 @@ using System.Text;
 namespace GameLevels
 {
     public enum GameLevels
-        {
-            Splash,
-            Menu,
-            Game
-        }
+    {
+        Splash,
+        Menu,
+        Game
+    }
 }

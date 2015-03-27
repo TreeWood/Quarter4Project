@@ -68,7 +68,7 @@ namespace Quarter4Project.Managers
 
         public override void Update(GameTime gameTime)
         {
-            if ((fadeInOutTime * 2) > totalTime) 
+            if ((fadeInOutTime * 2) > totalTime)
             {
                 throw new ArgumentOutOfRangeException("The fade time must be half or below half the total time of the splash.", "Fade Time: " + fadeInOutTime + " Total Time: " + totalTime);
             }
@@ -90,7 +90,7 @@ namespace Quarter4Project.Managers
                 fadeIn -= gameTime.ElapsedGameTime.Milliseconds;
                 fadeTexture.SetData<Color>(new Color[] { new Color(0, 0, 0, (fadeIn / 2)) });
             }
-            
+
             base.Update(gameTime);
         }
 

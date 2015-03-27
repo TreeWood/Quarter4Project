@@ -95,7 +95,7 @@ namespace Quarter4Project.Managers
                             game.setCurrentLevel(GameLevels.GameLevels.Game);
                             break;
                     }
-                    
+
                 }
             }
 
@@ -121,7 +121,7 @@ namespace Quarter4Project.Managers
                 {
                     spriteBatch.DrawString(buttonList[i].font, buttonList[i].text, buttonList[i].getFontShadowPos(), buttonList[i].textShadow, 0.0f, Vector2.Zero, buttonList[i].textShadowSize, SpriteEffects.None, 0.0f);
                 }
-                    spriteBatch.DrawString(buttonList[i].font, buttonList[i].text, buttonList[i].getFontPos(), buttonList[i].textColor);
+                spriteBatch.DrawString(buttonList[i].font, buttonList[i].text, buttonList[i].getFontPos(), buttonList[i].textColor);
             }
 
             spriteBatch.End();

@@ -1,9 +1,9 @@
 c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\obj\x86\Debug\Quarter4Project.csprojResolveAssemblyReference.cache
 c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Backgrounds\Splash.xnb
+c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Images\btnTex.xnb
+c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Fonts\Consolas.xnb
 c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Quarter4Project.exe
 c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Quarter4Project.pdb
 c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\obj\x86\Debug\Quarter4Project.exe
 c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\obj\x86\Debug\Quarter4Project.pdb
-c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Fonts\Consolas.xnb
-c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Images\btnTex.xnb
