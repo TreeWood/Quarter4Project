@@ -29,8 +29,7 @@ namespace Quarter4Project.Managers
                   sampleButtonTexture;
 
         List<ButtonFactory.Button> buttonList;
-
-        GlobalEvents gE;
+        ButtonEvents bE;
 
         #endregion
 
@@ -48,7 +47,7 @@ namespace Quarter4Project.Managers
 
             buttonList = new List<ButtonFactory.Button>();
 
-            gE = new GlobalEvents(game);
+            bE = new ButtonEvents(game);
 
             base.Initialize();
 
@@ -75,31 +74,10 @@ namespace Quarter4Project.Managers
 
         public override void Update(GameTime gameTime)
         {
-            mouseState = Mouse.GetState();
-            mousePos = new Point(mouseState.X, mouseState.Y);
 
-            //Updates all the buttons that are added to our buttonList.
-            for (int i = 0; i < buttonList.Count; i++)
-            {
-                if (buttonList[i].getCollisionRect().Intersects(getMousePos()) && mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
-                {
-                    switch (buttonList[i].eventID)
-                    {
-                        default:
-                        case 0:
-                            break;
-                        case 1000:
-                            gE.quitGame();
-                            break;
-                        case 2000:
-                            game.setCurrentLevel(GameLevels.GameLevels.Game);
-                            break;
-                    }
+            // Update the buttons
+            bE.Update(gameTime, buttonList);
 
-                }
-            }
-
-            prevMouseState = mouseState;
             base.Update(gameTime);
         }
 
@@ -109,36 +87,10 @@ namespace Quarter4Project.Managers
 
             //spriteBatch.Draw(backgroundImage, new Rectangle(0, 0, 640, 480), Color.White);
 
-            // Draws all the buttons that are added to our buttonList.
-            for (int i = 0; i < buttonList.Count; i++)
-            {
-                if (buttonList[i].borderTexture != null)
-                {
-                    spriteBatch.Draw(buttonList[i].borderTexture, buttonList[i].getBorderPosition(), buttonList[i].getBorderPos(), Color.White);
-                }
-                spriteBatch.Draw(buttonList[i].texture, buttonList[i].position, buttonList[i].getButtonSize(), Color.White);
-                if (buttonList[i].textShadow != null)
-                {
-                    spriteBatch.DrawString(buttonList[i].font, buttonList[i].text, buttonList[i].getFontShadowPos(), buttonList[i].textShadow, 0.0f, Vector2.Zero, buttonList[i].textShadowSize, SpriteEffects.None, 0.0f);
-                }
-                spriteBatch.DrawString(buttonList[i].font, buttonList[i].text, buttonList[i].getFontPos(), buttonList[i].textColor);
-            }
+            bE.Draw(spriteBatch, gameTime, buttonList);
 
             spriteBatch.End();
             base.Draw(gameTime);
-        }
-
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// Gets the mouse position.
-        /// </summary>
-        /// <returns>Rectangle format of the mouse position.</returns>
-        public Rectangle getMousePos()
-        {
-            return new Rectangle(mousePos.X, mousePos.Y, 1, 1);
         }
 
         #endregion

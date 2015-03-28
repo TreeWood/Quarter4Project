@@ -7,3 +7,4 @@ c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Proj
 c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Quarter4Project.pdb
 c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\obj\x86\Debug\Quarter4Project.exe
 c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\obj\x86\Debug\Quarter4Project.pdb
+C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Sprites\menus.xnb

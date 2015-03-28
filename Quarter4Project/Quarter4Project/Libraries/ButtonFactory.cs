@@ -15,15 +15,12 @@ namespace Quarter4Project.Libraries
     class ButtonFactory
     {
 
-        #region Structs
-
-        public struct Button
+        public class Button
         {
 
-            #region Struct Initialization
+            #region Initialization
 
             public Button(Texture2D buttonTexture, Vector2 buttonPosition, Point buttonSize, SpriteFont buttonFont, string buttonText, Color textColor, int eventID, int animationID)
-                : this()
             {
                 this.texture = buttonTexture;
                 this.position = buttonPosition;
@@ -36,7 +33,6 @@ namespace Quarter4Project.Libraries
             }
 
             public Button(Texture2D buttonTexture, Vector2 buttonPosition, Point buttonSize, SpriteFont buttonFont, string buttonText, Color textColor, Color textShadow, Vector2 textShadowPosition, float textShadowSizeint, int eventID, int animationID)
-                : this()
             {
                 this.texture = buttonTexture;
                 this.position = buttonPosition;
@@ -52,7 +48,6 @@ namespace Quarter4Project.Libraries
             }
 
             public Button(Texture2D buttonTexture, Vector2 buttonPosition, Point buttonSize, SpriteFont buttonFont, string buttonText, Color textColor, Color textShadow, Vector2 textShadowPosition, float textShadowSize, Texture2D buttonBorderTexture, Point buttonBorderSize, int eventID, int animationID)
-                : this()
             {
                 this.texture = buttonTexture;
                 this.position = buttonPosition;
@@ -70,7 +65,6 @@ namespace Quarter4Project.Libraries
             }
 
             public Button(Color buttonTexture, GraphicsDevice gD, Vector2 buttonPosition, Point buttonSize, SpriteFont buttonFont, string buttonText, Color textColor, int eventID, int animationID)
-                : this()
             {
                 this.texture = this.convertColorToTexture2D(buttonTexture, gD);
                 this.position = buttonPosition;
@@ -83,7 +77,6 @@ namespace Quarter4Project.Libraries
             }
 
             public Button(Color buttonTexture, GraphicsDevice gD, Vector2 buttonPosition, Point buttonSize, SpriteFont buttonFont, string buttonText, Color textColor, Color textShadow, Vector2 textShadowPosition, float textShadowSize, int eventID, int animationID)
-                : this()
             {
                 this.texture = this.convertColorToTexture2D(buttonTexture, gD);
                 this.position = buttonPosition;
@@ -99,7 +92,6 @@ namespace Quarter4Project.Libraries
             }
 
             public Button(Color buttonTexture, GraphicsDevice gD, Vector2 buttonPosition, Point buttonSize, SpriteFont buttonFont, string buttonText, Color textColor, Color textShadow, Vector2 textShadowPosition, float textShadowSize, Color buttonBorderTexture, Point buttonBorderSize, int eventID, int animationID)
-                : this()
             {
                 this.texture = this.convertColorToTexture2D(buttonTexture, gD);
                 this.position = buttonPosition;
@@ -118,7 +110,7 @@ namespace Quarter4Project.Libraries
 
             #endregion
 
-            #region Struct Fields
+            #region Fields
 
             public Texture2D texture { get; private set; }
             public Vector2 position { get; private set; }
@@ -136,7 +128,7 @@ namespace Quarter4Project.Libraries
 
             #endregion
 
-            #region Struct Methods
+            #region Methods
 
             /// <summary>
             /// Finds the center of the button.
@@ -219,7 +211,63 @@ namespace Quarter4Project.Libraries
 
         }
 
-        #endregion
+        public class AnimatedButton : SpriteAnimation
+        {
+            // To-Do: Make button animate.
+            public AnimatedButton(List<AnimatedButton.AddAnimation> animList, Vector2 pos, int eventID, int animationID)
+                : base(pos)
+            {
+                this.animList = animList;
+                position = pos;
+                this.eventID = eventID;
+                this.animID = animationID;
+                addAnimations();
+            }
+
+            List<AddAnimation> animList;
+            public int eventID { get; private set; }
+            public int animID { get; private set; }
+
+            public void addAnimations()
+            {
+                for (int i = 0; i < animList.Count; i++)
+                {
+                    addAnimation(animList[i].name, animList[i].texture, animList[i].frameSize, animList[i].sheetSize, animList[i].startPos, animList[i].endPos, animList[i].milliPerFrame, animList[i].wash);
+                    setAnimation(animList[0].name);
+                }
+            }
+            
+            public class AddAnimation
+            {
+
+                public AddAnimation(string name, Texture2D tex, Point frameSize, Point sheetSize, Point startPos, Point endPos, int milliPerFrame, Color wash)
+                {
+                    this.name = name;
+                    this.texture = tex;
+                    this.frameSize = frameSize;
+                    this.sheetSize = sheetSize;
+                    this.startPos = startPos;
+                    this.endPos = endPos;
+                    this.milliPerFrame = milliPerFrame;
+                    this.wash = wash;
+                    this.eventID = eventID;
+                    this.animID = animID;
+                }
+
+                public string name { get; private set; }
+                public Texture2D texture { get; private set; }
+                public Point frameSize { get; private set; }
+                public Point sheetSize { get; private set; }
+                public Point startPos { get; private set; }
+                public Point endPos {get; private set;}
+                public int milliPerFrame { get; private set; }
+                public Color wash { get; private set; }
+                public int eventID { get; private set; }
+                public int animID { get; private set; }
+
+            }
+
+        }
 
     }
 }

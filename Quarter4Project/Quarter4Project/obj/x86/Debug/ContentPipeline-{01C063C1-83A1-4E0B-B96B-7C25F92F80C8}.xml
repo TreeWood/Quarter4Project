@@ -28,6 +28,15 @@
       <Output>c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Fonts\Consolas.xnb</Output>
       <Time>2015-03-27T06:55:41.6441709-07:00</Time>
     </Item>
+    <Item>
+      <Source>Sprites\menus.png</Source>
+      <Name>Sprites\menus</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Sprites\menus.xnb</Output>
+      <Time>2015-03-27T15:42:52.273671-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{01C063C1-83A1-4E0B-B96B-7C25F92F80C8}</ContentProjectGUID>
@@ -35,10 +44,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4ProjectContent\</RootDirectory>
-      <LoggerRootDirectory>c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\</LoggerRootDirectory>
-      <IntermediateDirectory>c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>c:\users\ryan\documents\visual studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4ProjectContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
