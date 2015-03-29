@@ -213,7 +213,6 @@ namespace Quarter4Project.Libraries
 
         public class AnimatedButton : SpriteAnimation
         {
-            // To-Do: Make button animate.
             public AnimatedButton(List<AnimatedButton.AddAnimation> animList, Vector2 pos, int eventID, int animationID)
                 : base(pos)
             {

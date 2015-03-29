@@ -37,6 +37,15 @@
       <Output>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Sprites\menus.xnb</Output>
       <Time>2015-03-27T15:42:52.273671-07:00</Time>
     </Item>
+    <Item>
+      <Source>Images\mapTiles.png</Source>
+      <Name>Images\mapTiles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Images\mapTiles.xnb</Output>
+      <Time>2015-03-28T22:39:16.0828044-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{01C063C1-83A1-4E0B-B96B-7C25F92F80C8}</ContentProjectGUID>
