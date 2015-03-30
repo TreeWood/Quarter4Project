@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Quarter4Project.Libraries;
+using Quarter4Project.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,16 @@ namespace Quarter4Project
     class Tiles : SpriteAnimation
     {
 
-        public Tiles(Texture2D TileTexture, Vector2 position, string hp, List<string> hp2, Point pos)
+        GameManager game;
+
+        public Tiles(Texture2D TileTexture, Vector2 position, string hp, List<string> hp2, Point pos, GameManager g)
             : base(position)
         {
+            game = g;
             addAnimations(TileTexture);
-            if (hp == "P") hp = ".";
+            if (hp == "P") hp = "=";
 
+            // Wall Awareness - Corners will have corner texture, ends of walls will have end of wall texture, 3-way 4-way intersections will have textures
             if (hp == "1") {
                 if (pos.X > 0 && pos.X + 1 <= hp2[0].Length - 1 && pos.Y + 1 > 0 && pos.Y + 1 <= hp2.Count - 1)
                 {
@@ -102,74 +107,90 @@ namespace Quarter4Project
                     if (pos.Y + 1 <= hp2.Count)
                     {
                         if (hp == "1" && hp2[pos.Y - 1][pos.X] == '0' && hp2[pos.Y + 1][pos.X] == '1' && hp2[pos.Y][pos.X + 1] == '0' && hp2[pos.Y][pos.X - 1] == '0')
-                        {
                             hp = "H";
-                        }
                     }
 
+                    // Vertical Wall
                     if (pos.X + 1 < hp2[0].Length)
                     {
                         if (hp == "1" && hp2[pos.Y][pos.X + 1] == '1' && hp2[pos.Y][pos.X - 1] == '1')
-                        {
                             hp = ",";
-                        }
                     }
                 }
             }
-            else if (hp == ".")
+
+            if (game.level == 1)
             {
-                if (pos.Y % 2 == 0)
+                // Change the background texture to have a "fun" pattern
+                if (hp == ".")
                 {
-                    hp = "'";
+                    if (pos.Y % 2 == 0)
+                        hp = "'";
+
+                    if (pos.Y % 2 == 1 && pos.X % 2 == 0)
+                        hp = "`";
+
+                    if (pos.Y % 2 == 0 && pos.X % 2 == 1)
+                        hp = "~";
+
                 }
 
-                if (pos.Y % 2 == 1 && pos.X % 2 == 0)
+                // Another background texture morphed to have a "fun" pattern
+                if (hp == ";")
                 {
-                    hp = "`";
+                    if (pos.X % 2 == 1 && pos.Y % 2 == 0)
+                        hp = ":";
+                    else if (pos.X % 2 == 0 && pos.Y % 2 == 1)
+                        hp = ":";
                 }
 
-                if (pos.Y % 2 == 0 && pos.X % 2 == 1)
-                {
-                    hp = "~";
-                }
             }
-            else if (hp == ";")
-            {
-                if (pos.X % 2 == 1 && pos.Y % 2 == 0)
-                {
-                    hp = ":";
-                }
-                else if (pos.X % 2 == 0 && pos.Y % 2 == 1)
-                {
-                    hp = ":";
-                }
-            }
-            
-            
 
             setAnimation(hp);
         }
 
         public override void addAnimations(Texture2D tex)
         {
+            // Background texture 1 - Striped Pattern Blue Color
             addAnimation(".", tex, new Point(30, 30), new Point(1, 1), new Point(1, 1), new Point(1, 1), 16, new Color(0, 183, 255));
+            // Background texture 1 - Striped Pattern Orange Color
             addAnimation("'", tex, new Point(30, 30), new Point(1, 1), new Point(1, 1), new Point(1, 1), 16, new Color(255, 183, 0));
+            // Background texture 1 - Striped Pattern Green Color
             addAnimation("`", tex, new Point(30, 30), new Point(1, 1), new Point(1, 1), new Point(1, 1), 16, new Color(0, 183, 0));
+            // Background texture 1 - Striped Pattern Red Color
             addAnimation("~", tex, new Point(30, 30), new Point(1, 1), new Point(1, 1), new Point(1, 1), 16, new Color(183, 0, 0));
+            // Background texture 2 - Square Pattern Blue Color
             addAnimation(";", tex, new Point(30, 30), new Point(1, 1), new Point(0, 1), new Point(0, 1), 16, new Color(0, 0, 255));
+            // Background texture 2 - Square Pattern Green Color
             addAnimation(":", tex, new Point(30, 30), new Point(1, 1), new Point(0, 1), new Point(0, 1), 16, new Color(0, 255, 0));
+            // Background texture 3 - Concrete pattern No Color
             addAnimation("=", tex, new Point(30, 30), new Point(1, 1), new Point(2, 1), new Point(2, 1), 16, Color.White);
+
+            // Wall spacing - No Pattern No Color
+            addAnimation("0", tex, new Point(0, 0), new Point(1, 1), new Point(5, 0), new Point(0, 0), 16, Color.Transparent);
+            // Wall texture 1 - Horizontal Wall No Color
             addAnimation("1", tex, new Point(15, 15), new Point(1, 1), new Point(1, 0), new Point(0, 0), 16, Color.White);
-            addAnimation("0", tex, new Point(15, 15), new Point(1, 1), new Point(5, 0), new Point(0, 0), 16, Color.Transparent);
-            addAnimation("A", tex, new Point(15, 15), new Point(1, 1), new Point(2, 0), new Point(2, 0), 16, Color.White);
-            addAnimation("B", tex, new Point(15, 15), new Point(1, 1), new Point(3, 0), new Point(3, 0), 16, Color.White);
-            addAnimation("C", tex, new Point(15, 15), new Point(1, 1), new Point(5, 0), new Point(5, 0), 16, Color.White);
-            addAnimation("D", tex, new Point(15, 15), new Point(1, 1), new Point(4, 0), new Point(4, 0), 16, Color.White);
-            addAnimation("E", tex, new Point(15, 15), new Point(1, 1), new Point(6, 0), new Point(6, 0), 16, Color.White);
-            addAnimation("F", tex, new Point(15, 15), new Point(1, 1), new Point(7, 0), new Point(7, 0), 16, Color.White);
-            addAnimation("G", tex, new Point(15, 15), new Point(1, 1), new Point(9, 0), new Point(9, 0), 16, Color.White);
-            addAnimation("H", tex, new Point(15, 15), new Point(1, 1), new Point(8, 0), new Point(8, 0), 16, Color.White);
+            // Wall texture 10 - Vertical Wall No Color
             addAnimation(",", tex, new Point(15, 15), new Point(1, 1), new Point(0, 0), new Point(0, 0), 16, Color.White);
+            // Wall texture 2 - Top Right Corner No Color
+            addAnimation("A", tex, new Point(15, 15), new Point(1, 1), new Point(2, 0), new Point(2, 0), 16, Color.White);
+            // Wall texture 3 - Top Left Corner No Color
+            addAnimation("B", tex, new Point(15, 15), new Point(1, 1), new Point(3, 0), new Point(3, 0), 16, Color.White);
+            // Wall texture 4 - Bottom Right Corner No Color
+            addAnimation("C", tex, new Point(15, 15), new Point(1, 1), new Point(5, 0), new Point(5, 0), 16, Color.White);
+            // Wall texture 5 - Bottom Left Corner No Color
+            addAnimation("D", tex, new Point(15, 15), new Point(1, 1), new Point(4, 0), new Point(4, 0), 16, Color.White);
+            // Wall texture 6 - Horizontal Left Wall End
+            addAnimation("E", tex, new Point(15, 15), new Point(1, 1), new Point(6, 0), new Point(6, 0), 16, Color.White);
+            // Wall texture 7 - Horizontal Right Wall End
+            addAnimation("F", tex, new Point(15, 15), new Point(1, 1), new Point(7, 0), new Point(7, 0), 16, Color.White);
+            // Wall texture 8 - Vertical Bottom Wall End
+            addAnimation("G", tex, new Point(15, 15), new Point(1, 1), new Point(9, 0), new Point(9, 0), 16, Color.White);
+            // Wall texture 9 - Vertical Top Wall End
+            addAnimation("H", tex, new Point(15, 15), new Point(1, 1), new Point(8, 0), new Point(8, 0), 16, Color.White);
+
+            // To Do: Add textures for 3-way and 4-way wall intersections
+
             setAnimation(".");
             base.addAnimations(tex);
         }

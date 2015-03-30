@@ -33,13 +33,16 @@ namespace Quarter4Project.Libraries
 
         public spriteProperties currentSprite;
         public List<spriteProperties> sprites = new List<spriteProperties>();
-        public Vector2 position { get; protected set; }
-        public Vector2 velocity { get; protected set; }
-        public Vector2 acceleration { get; protected set; }
-        public Vector2 friction { get; protected set; }
+        protected Vector2 velocity,
+                          acceleration,
+                          position;
         protected Point currentFrame;
         protected int timeSinceLastFrame;
         protected KeyboardState keyboardState;
+        public Collision.Circle collisionCircle;
+        protected float rotation = 0;
+        public Vector2 rotationCenter = Vector2.Zero;
+        public Vector2 speed;
 
         #endregion
 
@@ -169,6 +172,16 @@ namespace Quarter4Project.Libraries
         public Rectangle collisionRect()
         {
             return new Rectangle((int)position.X, (int)position.Y, currentSprite.frameSize.X, currentSprite.frameSize.Y);
+        }
+
+        public void setPos(Vector2 pos)
+        {
+            position = pos;
+        }
+
+        public Vector2 getPos()
+        {
+            return position;
         }
 
         #endregion

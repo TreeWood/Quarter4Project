@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Quarter4Project.Entities;
 using Quarter4Project.EventManagers;
 using Quarter4Project.Libraries;
 using System;
@@ -22,10 +23,14 @@ namespace Quarter4Project.Managers
         Game1 game;
         SpriteBatch spriteBatch;
 
-        private List<string> map = new List<string>(),
+        public List<string> map = new List<string>(),
                              wall = new List<string>();
         List<Tiles> mapTiles = new List<Tiles>();
-        private int level = 1, prevlevel = 0;
+        public int level = 1, prevlevel = 0;
+
+        public Player player;
+        public Point playerGridPos = Point.Zero;
+        public Vector2 playerPosCenter = Vector2.Zero;
 
         SpriteFont Consolas;
 
@@ -38,6 +43,8 @@ namespace Quarter4Project.Managers
         ButtonEvents bE;
 
         KeyboardState keyBoardState, prevKeyBoardState;
+
+        public Camera2d cam = new Camera2d();
 
         #endregion
 
@@ -57,6 +64,22 @@ namespace Quarter4Project.Managers
             wall = wallGen();
 
             map = mapGen();
+
+            player = new Player(Game.Content.Load<Texture2D>(@"Images/mapTiles"), new Vector2(180, 120), this);
+
+            for (int i = 0; i < map.Count; i++)
+            {
+                for (int j = 0; j < map[0].Length; j++)
+                {
+                    if (map[i][j] == 'P')
+                    {
+                        player.setPos(new Vector2(j * 30, i * 30));
+                        map[i] = map[i].Substring(0, j) + '=' + map[i].Substring(j + 1);
+                    }
+                }
+            }
+
+            cam.Pos = new Vector2(player.getPos().X, player.getPos().Y);
 
             buttonList = new List<ButtonFactory.Button>();
 
@@ -117,13 +140,25 @@ namespace Quarter4Project.Managers
                 wall = wallGen();
             }
 
+            player.Update(gameTime);
+
+            playerPosCenter = player.getPos() + player.rotationCenter;
+
+            playerGridPos = new Point((int)(player.getPos().X / 30), (int)(player.getPos().Y / 30));
+
             if (level != prevlevel)
             {
                 for (int i = 0; i < map.Count; i++)
                 {
                     for (int j = 0; j < map[0].Length; j++)
                     {
-                        mapTiles.Add(new Tiles(Game.Content.Load<Texture2D>(@"Images/mapTiles"), new Vector2(j * 30, i * 30), map[i][j].ToString(), map, new Point(j, i)));
+                        if (map[i][j] == 'P')
+                        {
+                            player.setPos(new Vector2(j * 30, i * 30));
+                            map[i] = map[i].Substring(0, j) + '=' + map[i].Substring(j + 1);
+                        }
+
+                        mapTiles.Add(new Tiles(Game.Content.Load<Texture2D>(@"Images/mapTiles"), new Vector2(j * 30, i * 30), map[i][j].ToString(), map, new Point(j, i), this));
                     }
                 }
 
@@ -131,11 +166,13 @@ namespace Quarter4Project.Managers
                 {
                     for (int j = 0; j < wall[0].Length; j++)
                     {
-                        mapTiles.Add(new Tiles(Game.Content.Load<Texture2D>(@"Images/mapTiles"), new Vector2(j * 15, i * 15), wall[i][j].ToString(), wall, new Point(j, i)));
+                        mapTiles.Add(new Tiles(Game.Content.Load<Texture2D>(@"Images/mapTiles"), new Vector2(j * 15, i * 15), wall[i][j].ToString(), wall, new Point(j, i), this));
                     }
                 }
                 prevlevel = level;
             }
+
+                cam.Pos = new Vector2(player.getPos().X, player.getPos().Y);
 
             prevKeyBoardState = keyBoardState;
             base.Update(gameTime);
@@ -144,14 +181,26 @@ namespace Quarter4Project.Managers
         public override void Draw(GameTime gameTime)
         {
 
-            spriteBatch.Begin();
-            
+            spriteBatch.Begin(SpriteSortMode.Immediate,
+                        BlendState.AlphaBlend,
+                        null,
+                        null,
+                        null,
+                        null,
+                        cam.get_transformation(GraphicsDevice));        
+
             foreach (Tiles t in mapTiles)
-                t.Draw(gameTime, spriteBatch);
-            
+                t.Draw(gameTime, spriteBatch);  
+
+            player.Draw(gameTime, spriteBatch); 
+
+            spriteBatch.End();
+
+            spriteBatch.Begin();
+
             bE.Draw(spriteBatch, gameTime, buttonList);
 
-            bE.Draw(spriteBatch, gameTime, animatedButtonList);            
+            bE.Draw(spriteBatch, gameTime, animatedButtonList); 
 
             spriteBatch.End();
 

@@ -72,10 +72,12 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Player.cs" />
     <Compile Include="EventManagers\ButtonEvents.cs" />
     <Compile Include="EventManagers\GlobalEvents.cs" />
     <Compile Include="Libraries\Animation.cs" />
     <Compile Include="Libraries\ButtonFactory.cs" />
+    <Compile Include="Libraries\Camera.cs" />
     <Compile Include="Libraries\Collision.cs" />
     <Compile Include="Libraries\GameLevels.cs" />
     <Compile Include="Managers\GameManager.cs" />
