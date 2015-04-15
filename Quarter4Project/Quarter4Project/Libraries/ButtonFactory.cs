@@ -15,11 +15,25 @@ namespace Quarter4Project.Libraries
     class ButtonFactory
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
         public class Button
         {
 
             #region Initialization
 
+            /// <summary>
+            /// Saves a button with the parameters below.
+            /// </summary>
+            /// <param name="buttonTexture">Texture of the button.</param>
+            /// <param name="buttonPosition">Position of the button on the map.</param>
+            /// <param name="buttonSize">Size of the button.</param>
+            /// <param name="buttonFont">Font used on the button.</param>
+            /// <param name="buttonText">Text that appears on the button.</param>
+            /// <param name="textColor">Color of the text.</param>
+            /// <param name="eventID">Action that is completed when the button is clicked.</param>
+            /// <param name="animationID">Action that is completed when the mouse is hovered over the button.</param>
             public Button(Texture2D buttonTexture, Vector2 buttonPosition, Point buttonSize, SpriteFont buttonFont, string buttonText, Color textColor, int eventID, int animationID)
             {
                 this.texture = buttonTexture;
@@ -31,8 +45,22 @@ namespace Quarter4Project.Libraries
                 this.eventID = eventID;
                 this.animationID = animationID;
             }
-
-            public Button(Texture2D buttonTexture, Vector2 buttonPosition, Point buttonSize, SpriteFont buttonFont, string buttonText, Color textColor, Color textShadow, Vector2 textShadowPosition, float textShadowSizeint, int eventID, int animationID)
+            
+            /// <summary>
+            /// Saves a button with the parameters below.
+            /// </summary>
+            /// <param name="buttonTexture">Texture of the button.</param>
+            /// <param name="buttonPosition">Position of the button on the map.</param>
+            /// <param name="buttonSize">Size of the button.</param>
+            /// <param name="buttonFont">Font used on the button.</param>
+            /// <param name="buttonText">Text that appears on the button.</param>
+            /// <param name="textColor">Color of the text.</param>
+            /// <param name="textShadow">Shadow color of the text.</param>
+            /// <param name="textShadowPosition">Position of the shadow in relation to the text.</param>
+            /// <param name="textShadowSize">Size of the text shadow.</param>
+            /// <param name="eventID">Action that is completed when the button is clicked.</param>
+            /// <param name="animationID">Action that is completed when the mouse is hovered over the button.</param>
+            public Button(Texture2D buttonTexture, Vector2 buttonPosition, Point buttonSize, SpriteFont buttonFont, string buttonText, Color textColor, Color textShadow, Vector2 textShadowPosition, float textShadowSize, int eventID, int animationID)
             {
                 this.texture = buttonTexture;
                 this.position = buttonPosition;
@@ -47,6 +75,22 @@ namespace Quarter4Project.Libraries
                 this.animationID = animationID;
             }
 
+            /// <summary>
+            /// Saves a button with the parameters below.
+            /// </summary>
+            /// <param name="buttonTexture">Texture of the button.</param>
+            /// <param name="buttonPosition">Position of the button on the map.</param>
+            /// <param name="buttonSize">Size of the button.</param>
+            /// <param name="buttonFont">Font used on the button.</param>
+            /// <param name="buttonText">Text that appears on the button.</param>
+            /// <param name="textColor">Color of the text.</param>
+            /// <param name="textShadow">Color of the shadow of the text.</param>
+            /// <param name="textShadowPosition">Position of the shadow in relation to the text.</param>
+            /// <param name="textShadowSize">Size of the shadow of the text.</param>
+            /// <param name="buttonBorderTexture">Texture of the border of the button.</param>
+            /// <param name="buttonBorderSize">Size of the border.</param>
+            /// <param name="eventID">Action that is completed when the button is clicked.</param>
+            /// <param name="animationID">Action that is completed when the mouse is hovered over the button.</param>
             public Button(Texture2D buttonTexture, Vector2 buttonPosition, Point buttonSize, SpriteFont buttonFont, string buttonText, Color textColor, Color textShadow, Vector2 textShadowPosition, float textShadowSize, Texture2D buttonBorderTexture, Point buttonBorderSize, int eventID, int animationID)
             {
                 this.texture = buttonTexture;
@@ -64,6 +108,18 @@ namespace Quarter4Project.Libraries
                 this.animationID = animationID;
             }
 
+            /// <summary>
+            /// Creates a button with the following parameters.
+            /// </summary>
+            /// <param name="buttonTexture">Color of the button.</param>
+            /// <param name="gD">GraphicsDevice to convert the color to a texture.</param>
+            /// <param name="buttonPosition">Position of the button on the map.</param>
+            /// <param name="buttonSize">Size of the button.</param>
+            /// <param name="buttonFont">Font used on the button.</param>
+            /// <param name="buttonText">Text that appears on the button.</param>
+            /// <param name="textColor">Color of the text.</param>
+            /// <param name="eventID">Action that is completed when the button is clicked.</param>
+            /// <param name="animationID">Action that is completed when the mouse is hovered over the button.</param>
             public Button(Color buttonTexture, GraphicsDevice gD, Vector2 buttonPosition, Point buttonSize, SpriteFont buttonFont, string buttonText, Color textColor, int eventID, int animationID)
             {
                 this.texture = this.convertColorToTexture2D(buttonTexture, gD);
@@ -76,6 +132,21 @@ namespace Quarter4Project.Libraries
                 this.animationID = animationID;
             }
 
+            /// <summary>
+            /// Creates a button with the following parameters.
+            /// </summary>
+            /// <param name="buttonTexture">Color of the button.</param>
+            /// <param name="gD">GraphicsDevice to convert the color to a texture.</param>
+            /// <param name="buttonPosition">Position of the button on the map.</param>
+            /// <param name="buttonSize">Size of the button.</param>
+            /// <param name="buttonFont">Font used on the button.</param>
+            /// <param name="buttonText">Text that appears on the button.</param>
+            /// <param name="textColor">Color of the text.</param>
+            /// <param name="textShadow">Color of the shadow of the text.</param>
+            /// <param name="textShadowPosition">Position of the shadow in relation to the text.</param>
+            /// <param name="textShadowSize">Size of the shadow.</param>
+            /// <param name="eventID">Action that is completed when the button is clicked.</param>
+            /// <param name="animationID">Action that is completed when the mouse is hovered over the button.</param>
             public Button(Color buttonTexture, GraphicsDevice gD, Vector2 buttonPosition, Point buttonSize, SpriteFont buttonFont, string buttonText, Color textColor, Color textShadow, Vector2 textShadowPosition, float textShadowSize, int eventID, int animationID)
             {
                 this.texture = this.convertColorToTexture2D(buttonTexture, gD);
@@ -91,6 +162,23 @@ namespace Quarter4Project.Libraries
                 this.animationID = animationID;
             }
 
+            /// <summary>
+            /// Creates a button with the following parameters.
+            /// </summary>
+            /// <param name="buttonTexture">Color of the button.</param>
+            /// <param name="gD">GraphicsDevice to convert the color to a texture.</param>
+            /// <param name="buttonPosition">Position of the button on the map.</param>
+            /// <param name="buttonSize">Size of the button.</param>
+            /// <param name="buttonFont">Font used on the button.</param>
+            /// <param name="buttonText">Text that appears on the button.</param>
+            /// <param name="textColor">Color of the text.</param>
+            /// <param name="textShadow">Color of the text shadow.</param>
+            /// <param name="textShadowPosition">Position of the shadow in relation of the text.</param>
+            /// <param name="textShadowSize">Size of the shadow.</param>
+            /// <param name="buttonBorderTexture">Color of the border.</param>
+            /// <param name="buttonBorderSize">Size of the border.</param>
+            /// <param name="eventID">Action that is completed when the button is clicked.</param>
+            /// <param name="animationID">Action that is completed when the mouse is hovered over the button.</param>
             public Button(Color buttonTexture, GraphicsDevice gD, Vector2 buttonPosition, Point buttonSize, SpriteFont buttonFont, string buttonText, Color textColor, Color textShadow, Vector2 textShadowPosition, float textShadowSize, Color buttonBorderTexture, Point buttonBorderSize, int eventID, int animationID)
             {
                 this.texture = this.convertColorToTexture2D(buttonTexture, gD);
@@ -211,8 +299,21 @@ namespace Quarter4Project.Libraries
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public class AnimatedButton : SpriteAnimation
         {
+
+            #region Initialization
+
+            /// <summary>
+            /// Creates an animated button using the following parameters.
+            /// </summary>
+            /// <param name="animList">Animation list of the button.</param>
+            /// <param name="pos">Position of the button.</param>
+            /// <param name="eventID">Event that is completed when the button is clicked.</param>
+            /// <param name="animationID">Animation that is completed when the button is hovered.</param>
             public AnimatedButton(List<AnimatedButton.AddAnimation> animList, Vector2 pos, int eventID, int animationID)
                 : base(pos)
             {
@@ -223,10 +324,21 @@ namespace Quarter4Project.Libraries
                 addAnimations();
             }
 
+            #endregion
+
+            #region Fields
+
             List<AddAnimation> animList;
             public int eventID { get; private set; }
             public int animID { get; private set; }
 
+            #endregion
+
+            #region Methods
+
+            /// <summary>
+            /// Adds all the animations from the animation list.
+            /// </summary>
             public void addAnimations()
             {
                 for (int i = 0; i < animList.Count; i++)
@@ -235,10 +347,30 @@ namespace Quarter4Project.Libraries
                     setAnimation(animList[0].name);
                 }
             }
-            
+
+            #endregion
+
+            #region Sub-Classes
+
+            /// <summary>
+            /// 
+            /// </summary>
             public class AddAnimation
             {
 
+                #region Initialization
+
+                /// <summary>
+                /// Adds an animation based on the following parameters.
+                /// </summary>
+                /// <param name="name">Name of the animation</param>
+                /// <param name="tex">Sprite sheet used in the animation</param>
+                /// <param name="frameSize">Frame size of the animation in pixels.</param>
+                /// <param name="sheetSize">Sheet size of the total frames used</param>
+                /// <param name="startPos">Starting position of the animation.</param>
+                /// <param name="endPos">Ending position of the animation.</param>
+                /// <param name="milliPerFrame">Frame change rate.</param>
+                /// <param name="wash">Color wash.</param>
                 public AddAnimation(string name, Texture2D tex, Point frameSize, Point sheetSize, Point startPos, Point endPos, int milliPerFrame, Color wash)
                 {
                     this.name = name;
@@ -253,6 +385,10 @@ namespace Quarter4Project.Libraries
                     this.animID = animID;
                 }
 
+                #endregion
+
+                #region Fields
+
                 public string name { get; private set; }
                 public Texture2D texture { get; private set; }
                 public Point frameSize { get; private set; }
@@ -264,7 +400,11 @@ namespace Quarter4Project.Libraries
                 public int eventID { get; private set; }
                 public int animID { get; private set; }
 
+                #endregion
+
             }
+
+            #endregion
 
         }
 

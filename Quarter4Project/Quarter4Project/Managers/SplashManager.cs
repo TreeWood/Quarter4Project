@@ -9,12 +9,14 @@ using System.Text;
 namespace Quarter4Project.Managers
 {
     /// <summary>
-    /// This class will display the group logo and then continue to the menu.
+    /// This class will display the team logo and then continue to the menu.
     /// </summary>
     class SplashManager : DrawableGameComponent
     {
 
         #region Constants
+
+        /* *** Make sure the fadeInOutTime does not exceed half of the totalTime, it will cause visual problems and throw an error! *** */
 
         // How long will we see the splash screen? (in milliseconds)
         private const int totalTime = 4000;
@@ -22,17 +24,22 @@ namespace Quarter4Project.Managers
         // How long does the fade in and out take? (in milliseconds)
         private const int fadeInOutTime = 1000;
 
+        // Where is the file to the splash screen logo?
+        private const string splashLogoDir = "Backgrounds/Splash";
+
         #endregion
 
         #region Fields
 
-        Game1 game;
-        SpriteBatch spriteBatch;
+        private Game1 game;
+        private SpriteBatch spriteBatch;
 
-        Texture2D backgroundImage,
+        private Texture2D backgroundImage,
                   fadeTexture;
 
-        int countdown = totalTime, fadeIn = fadeInOutTime, fadeOut = 0;
+        private int countdown = totalTime,
+                    fadeIn = fadeInOutTime,
+                    fadeOut = 0;
 
         #endregion
 
@@ -44,18 +51,19 @@ namespace Quarter4Project.Managers
             game = g;
         }
 
-        public override void Initialize()
-        {
-            spriteBatch = new SpriteBatch(Game.GraphicsDevice);
-
-            base.Initialize();
-        }
-
+        /// <summary>
+        /// LoadContent will be called once per game and is the place to load
+        /// all of your content.
+        /// </summary>
         protected override void LoadContent()
         {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            backgroundImage = Game.Content.Load<Texture2D>(@"Backgrounds/Splash");
+            // Set the image background to the team logo.
+            backgroundImage = Game.Content.Load<Texture2D>(splashLogoDir);
 
+            // Fade texture is used to create the fade in and fade out effect.
             fadeTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             fadeTexture.SetData<Color>(new Color[] { new Color(0, 0, 0, 1.0f) });
 
@@ -66,20 +74,25 @@ namespace Quarter4Project.Managers
 
         #region Update and Draw
 
+        /// <summary>
+        /// Updates the fade in and fade out.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            // Checks if the fadeInOutTime is greater than half of the totalTime and throws an error if true.
             if ((fadeInOutTime * 2) > totalTime)
-            {
                 throw new ArgumentOutOfRangeException("The fade time must be half or below half the total time of the splash.", "Fade Time: " + fadeInOutTime + " Total Time: " + totalTime);
-            }
 
+            // Create new fadeTexture so we can manipulate the opacity.
             fadeTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
 
+            // Countdown is equal to the totalTime, in order to create the countdown effect it has to be subtracted from.
             countdown -= gameTime.ElapsedGameTime.Milliseconds;
+
+            // If the countdown is 0 then the splash screen is over, otherwise check for fading in and fading out.
             if (countdown <= 0)
-            {
                 game.setCurrentLevel(GameLevels.GameLevels.Menu);
-            }
             else if (countdown <= fadeInOutTime)
             {
                 fadeOut += gameTime.ElapsedGameTime.Milliseconds;
@@ -94,12 +107,20 @@ namespace Quarter4Project.Managers
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Draws the background image and the fade in and fade out.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
+
+            // Draw the background and the fading.
             spriteBatch.Draw(backgroundImage, new Rectangle(0, 0, 960, 620), Color.White);
             spriteBatch.Draw(fadeTexture, new Rectangle(0, 0, 960, 620), Color.White);
+
             spriteBatch.End();
+
             base.Draw(gameTime);
         }
 

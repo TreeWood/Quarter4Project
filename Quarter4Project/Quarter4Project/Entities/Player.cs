@@ -10,11 +10,38 @@ using System.Text;
 
 namespace Quarter4Project.Entities
 {
+    /// <summary>
+    /// 
+    /// </summary>
     class Player : SpriteAnimation
     {
 
+        #region Fields
+
         GameManager game;
         public Vector2 direction = Vector2.Zero;
+
+        private char pQuad1w,
+                     pQuad2w,
+                     pQuad3s,
+                     pQuad4s,
+                     pQuad2d,
+                     pQuad2da,
+                     pQuad4d,
+                     pQuad1a,
+                     pQuad2a,
+                     opQuad1w,
+                     opQuad2w,
+                     opQuad3s,
+                     opQuad4s,
+                     opQuad2d,
+                     opQuad4d,
+                     opQuad1a,
+                     opQuad2a;
+
+        #endregion
+
+        #region Initialization
 
         public Player(Texture2D texture, Vector2 pos, GameManager g)
             : base(pos)
@@ -26,137 +53,137 @@ namespace Quarter4Project.Entities
             speed = new Vector2(3, 3);
         }
 
+        #endregion
+
+        #region Update
+
         public override void Update(GameTime gameTime)
         {
-
-
-            if (keyboardState.IsKeyDown(Keys.S))
+            if (game.level == game.prevLevel)
             {
-                if (game.wall[(int)(position.Y / 15) + 2][(int)(position.X / 15)] != '1' && game.wall[(int)(position.Y / 15) + 2][(int)(position.X / 15) + 1] != '1')
-                {
-                    direction.Y = 1;
-                    speed.Y = 2f;
-                }
-                else
-                {
-                    direction.Y = 0;
-                    speed.Y = 0;
-                }
-            }
-            else
-            {
+
+                pQuad1w = game.getWall()[(int)((position.Y) / 15) - 1][(int)((position.X) / 15)];
+                pQuad2w = game.getWall()[(int)((position.Y) / 15) - 1][(int)((position.X) / 15) + 1];
+                pQuad3s = game.getWall()[(int)((position.Y + 1) / 15) + 2][(int)((position.X) / 15)];
+                pQuad4s = game.getWall()[(int)((position.Y + 1) / 15) + 2][(int)((position.X) / 15) + 1];
+                pQuad2d = game.getWall()[(int)((position.Y) / 15)][(int)((position.X) / 15) + 2];
+                pQuad4d = game.getWall()[(int)((position.Y) / 15) + 1][(int)((position.X) / 15) + 1];
+                pQuad2da = game.getWall()[(int)((position.Y) / 15) + 1][(int)((position.X) / 15) + 2];
+                pQuad2a = game.getWall()[(int)((position.Y) / 15) + 1][(int)((position.X) / 15) - 1];
+                pQuad1a = game.getWall()[(int)((position.Y) / 15)][(int)((position.X) / 15) - 1];
+
+                opQuad1w = game.getObjects()[(int)((position.Y - 15) / 30)][(int)((position.X) / 30)];
+                opQuad2w = game.getObjects()[(int)((position.Y - 15) / 30)][(int)((position.X + 15) / 30)];
+                opQuad3s = game.getObjects()[(int)((position.Y) / 30) + 1][(int)((position.X) / 30)];
+                opQuad4s = game.getObjects()[(int)((position.Y) / 30) + 1][(int)((position.X + 15) / 30)];
+                opQuad2d = game.getObjects()[(int)((position.Y) / 30)][(int)((position.X) / 30) + 1];
+                opQuad4d = game.getObjects()[(int)((position.Y + 15) / 30)][(int)((position.X) / 30) + 1];
+                opQuad1a = game.getObjects()[(int)((position.Y) / 30)][(int)((position.X - 15) / 30)];
+                opQuad2a = game.getObjects()[(int)((position.Y + 15) / 30)][(int)(position.X - 15) / 30];
+
                 if (direction.Y == 1)
                 {
-                    if ((int)((position.Y - 1) / 30) > (int)(position.Y / 30))
-                    {
-                        position.Y += position.Y % 15;
+                    if ((int)((position.Y - speed.Y) / 15) < (int)(position.Y / 15))
+                        position.Y -= position.Y % 15;
+                    if (position.Y % 15 == 0)
                         direction.Y = 0;
-                    }
-                    if (position.Y % 15 == 1 || position.Y % 15 == 0)
-                    {
-                        direction.Y = 0;
-                    }
                 }
-            }
 
-            if (keyboardState.IsKeyDown(Keys.W))
-            {
-                if (game.wall[(int)(position.Y / 15)][(int)(position.X / 15)] != '1' && game.wall[(int)(position.Y / 15)][(int)(position.X / 15) + 1] != '1')
+                if (keyboardState.IsKeyDown(Keys.S))
                 {
-                    direction.Y = -1;
-                    rotation = 270 * (float)Math.PI / 180; 
-                    speed.Y = 2f;
+                    if (position.X % 15 == 0 && position.Y % 15 == 0)
+                    {
+                        if (pQuad3s != '1' && pQuad4s != '1' && opQuad3s != 'x' && opQuad3s != 'y' && opQuad4s != 'x' && opQuad4s != 'y')
+                        {
+                            direction.Y = 1;
+                        }
+                    }
                 }
-                else
-                {
-                    direction.Y = 0;
-                    speed.Y = 0;
-                }
-            }
-            else
-            {
+
                 if (direction.Y == -1)
                 {
-                    if ((int)((position.Y - 1) / 30) > (int)(position.Y / 30))
-                    {
+                    if ((int)((position.Y - speed.Y) / 15) < (int)(position.Y / 15))
                         position.Y -= position.Y % 15;
+                    if (position.Y % 15 == 0)
                         direction.Y = 0;
-                    }
-
-                    if (position.Y % 15 == 1 || position.Y % 15 == 0)
+                }
+                
+                if (keyboardState.IsKeyDown(Keys.W))
+                {
+                    if (position.X % 15 == 0 && position.Y % 15 == 0)
                     {
-                        direction.Y = 0;
+                        if (pQuad1w != '1' && pQuad2w != '1' && opQuad1w != 'x' && opQuad1w != 'y' && opQuad2w != 'x' && opQuad2w != 'y')
+                        {
+                            direction.Y = -1;
+                        }
                     }
                 }
-            }
 
-            if (keyboardState.IsKeyDown(Keys.D))
-            {
-                if (game.wall[(int)(position.Y / 15)][(int)(position.X / 15) + 2] != '1' && game.wall[(int)(position.Y / 15) + 1][(int)(position.X / 15) + 2] != '1')
-                {
-                    direction.X = 1;
-                    speed.X = 2f;
-                }
-                else
-                {
-                    direction.X = 0;
-                    speed.X = 0;
-                }
-            }
-            else
-            {
                 if (direction.X == 1)
                 {
-                    if ((int)((position.X - 1) / 15) > (int)(position.X / 15))
-                    {
-                        position.X += position.X % 15;
-                        direction.X = 0;
-                    }
-                    if (position.X % 15 == 1 || position.X % 15 == 0)
-                    {
-                        direction.X = 0;
-                    }
-                }
-            }
+                    if ((int)((position.X - speed.X) / 15) < (int)(position.X / 15))
+                        position.X -= position.X % 15;
 
-            if (keyboardState.IsKeyDown(Keys.A))
-            {
-                if (game.wall[(int)(position.Y / 15)][(int)(position.X / 15)] != '1' && game.wall[(int)(position.Y / 15) + 1][(int)(position.X / 15)] != '1')
-                {
-                    direction.X = -1;
-                    speed.X = 2f;
+                    if (position.X % 15 == 0)
+                        direction.X = 0;
                 }
-                else
+
+                if (keyboardState.IsKeyDown(Keys.D))
                 {
-                    direction.X = 0;
-                    speed.X = 0;
+                    if (position.X % 15 == 0 && position.Y % 15 == 0)
+                    {
+                        if (pQuad2d != '1' && pQuad4d != '1' && pQuad2da != '1' && opQuad2d != 'x' && opQuad2d != 'y' && opQuad4d != 'x' && opQuad4d != 'y')
+                        {
+                            direction.X = 1;
+                        }
+                    }
                 }
-            }
-            else
-            {
+
                 if (direction.X == -1)
                 {
-                    if ((int)((position.X - 1) / 15) > (int)(position.X / 15))
-                    {
+                    if ((int)((position.X - speed.X) / 15) < (int)(position.X / 15))
                         position.X -= position.X % 15;
+
+                    if (position.X % 15 == 0)
                         direction.X = 0;
-                    }
-                    if (position.X % 15 == 1 || position.X % 15 == 0)
+                }
+ 
+                if (keyboardState.IsKeyDown(Keys.A))
+                {
+                    if (position.X % 15 == 0 && position.Y % 15 == 0)
                     {
-                        direction.X = 0;
+                        if (pQuad1a != '1' && pQuad2a != '1' && opQuad2a != 'x' && opQuad2a != 'y' && opQuad1a != 'x' && opQuad1a != 'y')
+                        {
+                            direction.X = -1;
+                        }
                     }
                 }
-            }
 
-            position += direction * speed;
+                position += direction * speed;
+
+                
+                if (game.getBackground()[(int)(position.Y / 30)][(int)(position.X / 30)] == '=')
+                {
+                    //game.setTile(game.getBackground(), (int)(position.Y / 30), (int)(position.X / 30), '$');
+                    //game.updateMapTiles(gameTime, game.getBackground(), (int)(position.Y / 30), (int)(position.X / 30), "=", 30);
+                }
+                 
+
+            }
             base.Update(gameTime);
         }
+
+        #endregion
+
+        #region Methods
 
         public override void addAnimations(Texture2D tex)
         {
             addAnimation("1", tex, new Point(30, 30), new Point(1, 1), new Point(2, 1), new Point(2, 1), 16, Color.Pink);
             setAnimation("1");
         }
+
+        #endregion
 
     }
 }

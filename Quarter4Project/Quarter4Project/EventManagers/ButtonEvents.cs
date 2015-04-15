@@ -28,6 +28,10 @@ namespace Quarter4Project.EventManagers
 
         #region Initialization
 
+        /// <summary>
+        /// Initialize variables.
+        /// </summary>
+        /// <param name="g">Instance of game.</param>
         public ButtonEvents(Game1 g)
         {
             game = g;
@@ -38,6 +42,11 @@ namespace Quarter4Project.EventManagers
 
         #region Update and Draw
 
+        /// <summary>
+        /// Updates non-animating buttons and checks and completes events.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <param name="buttonList">non-animating button list that is to be updated.</param>
         public void Update(GameTime gameTime, List<ButtonFactory.Button> buttonList)
         {
             mouseState = Mouse.GetState();
@@ -69,6 +78,11 @@ namespace Quarter4Project.EventManagers
             prevMouseState = mouseState;
         }
 
+        /// <summary>
+        /// Updates animating buttons and checks and completes events.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <param name="buttonList">Animating button list that is to be updated.</param>
         public void Update(GameTime gameTime, List<ButtonFactory.AnimatedButton> buttonList)
         {
             mouseState2 = Mouse.GetState();
@@ -81,9 +95,12 @@ namespace Quarter4Project.EventManagers
             //Updates all the buttons that are added to our buttonList.
             for (int i = 0; i < buttonList.Count; i++)
             {
-                if (buttonList[i].collisionRect().Intersects(getMousePos()))
+                if (buttonList[i].collisionRect().Intersects(getMousePos2()))
                 {
-                    buttonList[i].setAnimation("Hover");
+                    if (buttonList[i].sprites.Count(p => p.name == "Hover") >= 1)
+                    {
+                        buttonList[i].setAnimation("Hover");
+                    }
 
                     if (mouseState2.LeftButton == ButtonState.Pressed && prevMouseState2.LeftButton == ButtonState.Released)
                     {
@@ -102,18 +119,27 @@ namespace Quarter4Project.EventManagers
                                 game.setCurrentLevel(GameLevels.GameLevels.Game);
                                 break;
                         }
-                    }                    
+                    }
                 }
                 else
                 {
-                    buttonList[i].setAnimation("Hello");
+                    if (buttonList[i].sprites.Count(p => p.name == "Hello") >= 1)
+                    {
+                        buttonList[i].setAnimation("Hello");
+                    }
                 }
-                
+
             }
 
             prevMouseState2 = mouseState2;
         }
 
+        /// <summary>
+        /// Draws non-animating buttons.
+        /// </summary>
+        /// <param name="spriteBatch">Enabled drawing for textures.</param>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <param name="buttonList">non-animating button list that is to be drawn.</param>
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime, List<ButtonFactory.Button> buttonList)
         {
 
@@ -134,6 +160,12 @@ namespace Quarter4Project.EventManagers
 
         }
 
+        /// <summary>
+        /// Draws animating buttons.
+        /// </summary>
+        /// <param name="spriteBatch">Used to draw the textures.</param>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <param name="buttonList">Animating button list that is to be drawn.</param>
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime, List<ButtonFactory.AnimatedButton> buttonList)
         {
 
@@ -153,6 +185,15 @@ namespace Quarter4Project.EventManagers
         public Rectangle getMousePos()
         {
             return new Rectangle(mousePos.X, mousePos.Y, 1, 1);
+        }
+
+        /// <summary>
+        /// Gets the mouse position.
+        /// </summary>
+        /// <returns>Returns rectangle at mouse position.</returns>
+        public Rectangle getMousePos2()
+        {
+            return new Rectangle(mousePos2.X, mousePos2.Y, 1, 1);
         }
 
         #endregion

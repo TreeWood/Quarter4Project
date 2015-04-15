@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Quarter4Project.Libraries
 {
+    /// <summary>
+    /// 
+    /// </summary>
     class SpriteAnimation
     {
 
@@ -33,16 +36,18 @@ namespace Quarter4Project.Libraries
 
         public spriteProperties currentSprite;
         public List<spriteProperties> sprites = new List<spriteProperties>();
-        protected Vector2 velocity,
-                          acceleration,
-                          position;
-        protected Point currentFrame;
-        protected int timeSinceLastFrame;
-        protected KeyboardState keyboardState;
-        public Collision.Circle collisionCircle;
+
+        protected Vector2 position;
+        public Vector2 speed;
+        protected Color color;
+
         protected float rotation = 0;
         public Vector2 rotationCenter = Vector2.Zero;
-        public Vector2 speed;
+
+        protected Point currentFrame;
+        protected int timeSinceLastFrame;
+
+        protected KeyboardState keyboardState;
 
         #endregion
 
@@ -93,9 +98,21 @@ namespace Quarter4Project.Libraries
         /// </summary>
         /// <param name="gameTime"></param>
         /// <param name="spriteBatch"></param>
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-                spriteBatch.Draw(currentSprite.texture, position, new Rectangle(currentSprite.frameSize.X * currentFrame.X, currentSprite.frameSize.Y * currentFrame.Y, currentSprite.frameSize.X, currentSprite.frameSize.Y), currentSprite.color);
+            //spriteBatch.Draw(currentSprite.texture, position, new Rectangle(currentSprite.frameSize.X * currentFrame.X, currentSprite.frameSize.Y * currentFrame.Y, currentSprite.frameSize.X, currentSprite.frameSize.Y), currentSprite.color);
+            spriteBatch.Draw(currentSprite.texture, new Vector2(position.X + rotationCenter.X, position.Y + rotationCenter.Y), new Rectangle(currentSprite.frameSize.X * currentFrame.X, currentSprite.frameSize.Y * currentFrame.Y, currentSprite.frameSize.X, currentSprite.frameSize.Y), currentSprite.color, rotation, rotationCenter, 1, SpriteEffects.None, 0);
+         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="spriteBatch"></param>
+        /// <param name="cam"></param>
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch, Camera cam)
+        {
+            spriteBatch.Draw(currentSprite.texture, new Vector2(position.X - (cam.pos.X), position.Y - (cam.pos.Y)), new Rectangle((currentSprite.frameSize.X * currentFrame.X), (currentSprite.frameSize.Y * currentFrame.Y), currentSprite.frameSize.X, currentSprite.frameSize.Y), currentSprite.color);
         }
 
         #endregion
@@ -111,7 +128,13 @@ namespace Quarter4Project.Libraries
             if (currentSprite.color != color)
             {
                 currentSprite.color = color;
+                this.color = color;
             }
+        }
+
+        public Color getWash()
+        {
+            return color;
         }
 
         /// <summary>
@@ -136,6 +159,7 @@ namespace Quarter4Project.Libraries
             tmpProps.endPos = endP;
             tmpProps.millisecondsPerFrame = msPF;
             tmpProps.color = color;
+            this.color = color;
 
             sprites.Add(tmpProps);
         }
@@ -174,14 +198,27 @@ namespace Quarter4Project.Libraries
             return new Rectangle((int)position.X, (int)position.Y, currentSprite.frameSize.X, currentSprite.frameSize.Y);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pos"></param>
         public void setPos(Vector2 pos)
         {
             position = pos;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Vector2 getPos()
         {
             return position;
+        }
+
+        public string getAnimName()
+        {
+            return currentSprite.name;
         }
 
         #endregion

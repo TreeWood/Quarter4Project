@@ -54,8 +54,8 @@ namespace Quarter4Project
             // Set the size of our window.
             graphics.PreferredBackBufferWidth = windowWidth;
             graphics.PreferredBackBufferHeight = windowHeight;
-
-
+            graphics.PreferMultiSampling = false;
+            graphics.SynchronizeWithVerticalRetrace = true;
             // Set our mouse to visible to we can see it.
             this.IsMouseVisible = true;
         }
@@ -68,8 +68,6 @@ namespace Quarter4Project
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             splashManager = new SplashManager(this);
             Components.Add(splashManager);
 
@@ -92,8 +90,6 @@ namespace Quarter4Project
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -120,8 +116,6 @@ namespace Quarter4Project
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
@@ -131,9 +125,8 @@ namespace Quarter4Project
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            // Set the games background color to black.
             GraphicsDevice.Clear(Color.Black);
-
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
@@ -142,8 +135,13 @@ namespace Quarter4Project
 
         #region Methods
 
+        /// <summary>
+        /// Sets the game level to the specified parameter.
+        /// </summary>
+        /// <param name="gameLevel">Game level from enum in GameLevel namespace.</param>
         public void setCurrentLevel(GameLevels.GameLevels gameLevel)
         {
+            // Shut off all of our GameLevels
             splashManager.Enabled = false;
             splashManager.Visible = false;
             menuManager.Enabled = false;
@@ -151,6 +149,7 @@ namespace Quarter4Project
             gameManager.Enabled = false;
             gameManager.Visible = false;
 
+            // Set the game level based off the parameter.
             switch (gameLevel)
             {
                 case GameLevels.GameLevels.Splash:

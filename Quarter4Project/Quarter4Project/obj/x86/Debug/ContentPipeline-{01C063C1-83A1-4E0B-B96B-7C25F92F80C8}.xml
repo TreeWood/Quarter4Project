@@ -38,13 +38,76 @@
       <Time>2015-03-27T15:42:52.273671-07:00</Time>
     </Item>
     <Item>
-      <Source>Images\mapTiles.png</Source>
-      <Name>Images\mapTiles</Name>
+      <Source>Sprites\mapTiles.png</Source>
+      <Name>Sprites\mapTiles</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Images\mapTiles.xnb</Output>
-      <Time>2015-03-28T22:39:16.0828044-07:00</Time>
+      <Output>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Sprites\mapTiles.xnb</Output>
+      <Time>2015-04-02T10:00:04.173356-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\boxUI.png</Source>
+      <Name>Images\boxUI</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Images\boxUI.xnb</Output>
+      <Time>2015-03-30T20:28:36.834869-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\menuTexture.png</Source>
+      <Name>Sprites\menuTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Sprites\menuTexture.xnb</Output>
+      <Time>2015-03-30T22:24:17.8171581-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Backgrounds\starBG.png</Source>
+      <Name>Backgrounds\starBG</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Backgrounds\starBG.xnb</Output>
+      <Time>2015-03-30T23:46:25.0760956-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\gridOverlay.png</Source>
+      <Name>Images\gridOverlay</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Images\gridOverlay.xnb</Output>
+      <Time>2015-03-31T08:07:43.8510382-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\health.png</Source>
+      <Name>Images\health</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Images\health.xnb</Output>
+      <Time>2015-03-31T23:32:37.385039-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\light.png</Source>
+      <Name>Images\light</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Images\light.xnb</Output>
+      <Time>2015-04-03T16:18:58.0955526-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Effects\lighting.fx</Source>
+      <Name>Effects\lighting</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ryan\Documents\Visual Studio 2013\Projects\Quarter4Project\Quarter4Project\Quarter4Project\bin\x86\Debug\Content\Effects\lighting.xnb</Output>
+      <Time>2015-04-04T02:22:50.7482345-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

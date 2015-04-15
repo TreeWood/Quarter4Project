@@ -75,11 +75,13 @@
     <Compile Include="Entities\Player.cs" />
     <Compile Include="EventManagers\ButtonEvents.cs" />
     <Compile Include="EventManagers\GlobalEvents.cs" />
+    <Compile Include="EventManagers\WindowEvents.cs" />
     <Compile Include="Libraries\Animation.cs" />
     <Compile Include="Libraries\ButtonFactory.cs" />
     <Compile Include="Libraries\Camera.cs" />
     <Compile Include="Libraries\Collision.cs" />
     <Compile Include="Libraries\GameLevels.cs" />
+    <Compile Include="Libraries\WindowFactory.cs" />
     <Compile Include="Managers\GameManager.cs" />
     <Compile Include="Managers\MenuManager.cs" />
     <Compile Include="Managers\SplashManager.cs" />
@@ -93,6 +95,24 @@
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
+    <None Include="Maps\2\Walls\2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Maps\2\Objects\2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Maps\2\Background\2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Maps\1\Walls\1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Maps\1\Objects\1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Maps\1\Background\1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Quarter4ProjectContent\Quarter4ProjectContent.contentproj">

@@ -6,8 +6,14 @@ using System.Text;
 
 namespace Quarter4Project
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class Collision
     {
+
+        #region Structs
+
         /// <summary>
         /// Creates map segments
         /// </summary>
@@ -36,7 +42,7 @@ namespace Quarter4Project
         }
 
         /// <summary>
-        /// 
+        /// Creates a line from point A to point B
         /// </summary>
         public struct line2D
         {
@@ -56,7 +62,7 @@ namespace Quarter4Project
         }
 
         /// <summary>
-        /// 
+        /// Creates a circle.
         /// </summary>
         public struct Circle
         {
@@ -71,7 +77,7 @@ namespace Quarter4Project
         }
 
         /// <summary>
-        /// 
+        /// To be removed.
         /// </summary>
         public struct Ellipse
         {
@@ -89,53 +95,57 @@ namespace Quarter4Project
             }
         }
 
+        #endregion
+
+        #region Methods
+
         /// <summary>
-        /// 
+        /// Magnitude of a vector.
         /// </summary>
-        /// <param name="v"></param>
-        /// <returns></returns>
+        /// <param name="v">Vector</param>
+        /// <returns>float magnitude of vector.</returns>
         public static float magnitude(Vector2 v)
         {
             return (float)Math.Sqrt((v.X * v.X) + (v.Y * v.Y));
         }
 
         /// <summary>
-        /// 
+        /// Unit vector of a vector.
         /// </summary>
-        /// <param name="v"></param>
-        /// <returns></returns>
+        /// <param name="v">Vector</param>
+        /// <returns>unit vector of vector</returns>
         public static Vector2 unitVector(Vector2 v)
         {
             return new Vector2((v.X / (float)magnitude(v)), (v.Y / (float)magnitude(v)));
         }
 
         /// <summary>
-        /// 
+        /// Finds the normal of the vector
         /// </summary>
-        /// <param name="v"></param>
-        /// <returns></returns>
+        /// <param name="v">Vector</param>
+        /// <returns>Vector normal of vector v</returns>
         public static Vector2 vectorNormal(Vector2 v)
         {
             return new Vector2(-v.Y, v.X);
         }
 
         /// <summary>
-        /// 
+        /// Find dot product of vector A and vector B
         /// </summary>
-        /// <param name="u"></param>
-        /// <param name="v"></param>
-        /// <returns></returns>
+        /// <param name="u">Vector A</param>
+        /// <param name="v">Vector B</param>
+        /// <returns>Float value dot product of vector A and vector B</returns>
         public static float dotProduct(Vector2 u, Vector2 v)
         {
             return (u.X * v.X) + (u.Y * v.Y);
         }
 
         /// <summary>
-        /// 
+        /// Finds reflection vector of Vector A and Vector B
         /// </summary>
-        /// <param name="v"></param>
-        /// <param name="a"></param>
-        /// <returns></returns>
+        /// <param name="v">Vector A</param>
+        /// <param name="a">Vector B</param>
+        /// <returns>Vector2 reflection vector of vector A and vector B</returns>
         public static Vector2 reflectionVector(Vector2 v, Vector2 a)
         {
             Vector2 n = vectorNormal(a);
@@ -147,11 +157,11 @@ namespace Quarter4Project
         }
 
         /// <summary>
-        /// 
+        /// Checks the collision between a map segment and a circle.
         /// </summary>
-        /// <param name="C"></param>
-        /// <param name="S"></param>
-        /// <returns></returns>
+        /// <param name="C">Circle</param>
+        /// <param name="S">Map Segment</param>
+        /// <returns>True or False if the circle and mapsegment is colliding or not</returns>
         public static bool CheckCircleSegmentCollision(Circle C, mapSegment S)
         {
             line2D L;
@@ -192,11 +202,11 @@ namespace Quarter4Project
         }
 
         /// <summary>
-        /// 
+        /// Checks if a mapsegment is colliding with a mapsegment
         /// </summary>
-        /// <param name="s1"></param>
-        /// <param name="s2"></param>
-        /// <returns></returns>
+        /// <param name="s1">mapsegment A</param>
+        /// <param name="s2">mapsegment B</param>
+        /// <returns>True or False if the mapsegments are colliding or not.</returns>
         public static bool CheckSegmentSegmentCollision(mapSegment s1, mapSegment s2)
         {
             line2D l1, l2;
@@ -223,11 +233,11 @@ namespace Quarter4Project
         }
 
         /// <summary>
-        /// 
+        /// Checks collision between two circles.
         /// </summary>
-        /// <param name="C1"></param>
-        /// <param name="C2"></param>
-        /// <returns></returns>
+        /// <param name="C1">Circle A</param>
+        /// <param name="C2">Circle B</param>
+        /// <returns>True or False if the circles are colliding or not.</returns>
         public static bool CheckCircleCircleCollision(Circle C1, Circle C2)
         {
             if (C1.R + C2.R >= magnitude(C2.P - C1.P))
@@ -238,11 +248,11 @@ namespace Quarter4Project
         }
 
         /// <summary>
-        /// 
+        /// Checks collision between a circle and a rectangle.
         /// </summary>
-        /// <param name="C"></param>
-        /// <param name="R"></param>
-        /// <returns></returns>
+        /// <param name="C">Circle</param>
+        /// <param name="R">Rectangle</param>
+        /// <returns>True or False if the circle and rectangle are colliding or not.</returns>
         public static bool CheckCircleRectangleCollision(Circle C, Rectangle R)
         {
             Point[] points = new Point[] { new Point(R.X, R.Y), new Point(R.X + R.Width, R.Y), new Point(R.X, R.Y + R.Height), new Point(R.X + R.Width, R.Y + R.Height) };
@@ -256,7 +266,7 @@ namespace Quarter4Project
         }
 
         /// <summary>
-        /// 
+        /// To be removed.
         /// </summary>
         /// <param name="E"></param>
         /// <param name="F"></param>
@@ -283,7 +293,7 @@ namespace Quarter4Project
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="v"></param>
         /// <returns></returns>
@@ -291,5 +301,8 @@ namespace Quarter4Project
         {
             return Math.Atan2(v.Y, v.X) * 180 / Math.PI;
         }
+
+        #endregion
+
     }
 }

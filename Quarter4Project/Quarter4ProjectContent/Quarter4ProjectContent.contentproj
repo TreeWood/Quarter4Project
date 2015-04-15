@@ -51,7 +51,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\mapTiles.png">
+    <Compile Include="Sprites\mapTiles.png">
       <Name>mapTiles</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -87,6 +87,67 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Name>2</Name>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\health.png">
+      <Name>health</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\boxUI.png">
+      <Name>boxUI</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\menuTexture.png">
+      <Name>menuTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Backgrounds\starBG.png">
+      <Name>starBG</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\gridOverlay.png">
+      <Name>gridOverlay</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Maps\1\Objects\1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>1</Name>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Maps\2\Objects\2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>2</Name>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\light.png">
+      <Name>light</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Effects\lighting.fx">
+      <Name>lighting</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
